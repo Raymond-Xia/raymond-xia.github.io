@@ -4,6 +4,7 @@ import App from "./App";
 import Home from "./Home";
 import Resume from "./Resume";
 import Links from "./Links";
+import Games from "./Games";
 import "bootstrap/dist/css/bootstrap.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
@@ -23,6 +24,10 @@ const router = createHashRouter([
       {
         path: "links",
         element: <Links />,
+      },
+      {
+        path: "games",
+        element: <Games />,
       },
     ],
   },
