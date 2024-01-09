@@ -18,7 +18,7 @@ function Home() {
         <p className="lead">
           Here you can find cool things about me and my technical skills.
         </p>
-        <hr className="my-4" />
+        {/* <hr className="my-4" />
         <p>
           It uses utility classes for typography and spacing to space content
           out within the larger container.
@@ -27,7 +27,7 @@ function Home() {
           <a className="btn btn-primary btn-lg" href="#" role="button">
             Learn more
           </a>
-        </p>
+        </p> */}
       </div>
       {/* <ListGroup
         items={items}
