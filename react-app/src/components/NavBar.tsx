@@ -1,6 +1,6 @@
 function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar bg-dark navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           Raymond's Website
@@ -24,8 +24,13 @@ function NavBar() {
               </a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" href="/resume/">
+                Resume
+              </a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="#">
-                Link
+                Links
               </a>
             </li>
             <li className="nav-item dropdown">
