@@ -8,9 +8,9 @@ function App() {
     <>
       <Navbar bg="primary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/home">Raymond's Website</Navbar.Brand>
+          <Navbar.Brand href="/">Raymond's Website</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/resume">Resume</Nav.Link>
             <Nav.Link href="/links">Links</Nav.Link>
             <Nav.Link href="/games">Games</Nav.Link>
