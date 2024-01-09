@@ -5,23 +5,23 @@ import Home from "./Home";
 import Resume from "./Resume";
 import Links from "./Links";
 import "bootstrap/dist/css/bootstrap.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Home />,
       },
       {
-        path: "/resume",
+        path: "resume",
         element: <Resume />,
       },
       {
-        path: "/links",
+        path: "links",
         element: <Links />,
       },
     ],
