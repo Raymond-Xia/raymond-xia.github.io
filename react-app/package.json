@@ -2,7 +2,7 @@
   "name": "react-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://raymond-xia.github.io/react-gh-pages",
+  "homepage": "https://raymond-xia.github.io/",
   "type": "module",
   "scripts": {
     "dev": "vite",
