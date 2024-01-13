@@ -2,6 +2,7 @@ import ListGroup from "./components/ListGroup";
 import Button from "react-bootstrap/Button";
 import Tree from "./assets/tree.jpg";
 import Image from "react-bootstrap/Image";
+import Carousel from "react-bootstrap/Carousel";
 
 function Home() {
   let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
@@ -14,20 +15,17 @@ function Home() {
     <>
       <Image src={Tree} alt="Tree" fluid />
       <div className="jumbotron">
-        <h1 className="display-4">Welcome to Raymond's Website!</h1>
+        <h1 className="display-4">Hi, I'm Raymond</h1>
         <p className="lead">
-          Here you can find cool things about me and my technical skills.
+          I'm a full stack web developer with 2+ years of experience.
         </p>
-        {/* <hr className="my-4" />
-        <p>
-          It uses utility classes for typography and spacing to space content
-          out within the larger container.
-        </p>
+        <hr className="my-4" />
+        <p>Here you can find cool things about me and my technical skills.</p>
         <p className="lead">
           <a className="btn btn-primary btn-lg" href="#" role="button">
             Learn more
           </a>
-        </p> */}
+        </p>
       </div>
       {/* <ListGroup
         items={items}
