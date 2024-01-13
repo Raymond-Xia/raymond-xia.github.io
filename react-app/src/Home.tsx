@@ -2,7 +2,6 @@ import ListGroup from "./components/ListGroup";
 import Button from "react-bootstrap/Button";
 import Tree from "./assets/tree.jpg";
 import Image from "react-bootstrap/Image";
-import Carousel from "react-bootstrap/Carousel";
 
 function Home() {
   let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
@@ -22,7 +21,7 @@ function Home() {
         <hr className="my-4" />
         <p>Here you can find cool things about me and my technical skills.</p>
         <p className="lead">
-          <a className="btn btn-primary btn-lg" href="#" role="button">
+          <a className="btn btn-primary btn-lg" href="/#resume" role="button">
             Learn more
           </a>
         </p>
