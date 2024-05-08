@@ -1,4 +1,4 @@
-import resumeFile from "./assets/RaymondXiaResume2023.pdf";
+import resumeFile from "./assets/RaymondXiaResume.pdf";
 
 function Resume() {
   return (

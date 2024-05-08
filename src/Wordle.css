@@ -1,0 +1,24 @@
+.letter {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.letter:focus {
+  outline: none;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}

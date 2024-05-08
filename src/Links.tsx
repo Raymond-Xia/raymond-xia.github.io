@@ -9,10 +9,16 @@ function Links() {
       <div className="row">
         <div className="col-lg-3 mb-4">
           <Card>
-            <Card.Img variant="top" src={Github} style={{ width: "18rem" }} />
+            <Card.Img
+              variant="top"
+              src={Github}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+              }}
+            />
             <Card.Body>
               <Card.Title>GitHub</Card.Title>
-              <Card.Text>Click to check out my GitHub.</Card.Text>
               <Button href="https://github.com/raymond-xia" variant="primary">
                 Go to GitHub
               </Button>
@@ -21,10 +27,13 @@ function Links() {
         </div>
         <div className="col-lg-3 mb-4">
           <Card>
-            <Card.Img variant="top" src={LinkedIn} style={{ width: "18rem" }} />
+            <Card.Img
+              variant="top"
+              src={LinkedIn}
+              style={{ maxWidth: "100%", height: "auto" }}
+            />
             <Card.Body>
               <Card.Title>LinkedIn</Card.Title>
-              <Card.Text>Click to check out my LinkedIn.</Card.Text>
               <Button
                 href="https://linkedin.com/in/raymond-xia"
                 variant="primary"
