@@ -13,6 +13,7 @@ body {
 
 .company-icon {
   max-width: 150px;
+  margin-bottom: 5px;
 }
 
 .company-row {

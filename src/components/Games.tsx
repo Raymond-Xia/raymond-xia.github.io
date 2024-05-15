@@ -54,7 +54,7 @@ function Games() {
               <Card.Body>
                 <Card.Title>Tic Tac Toe</Card.Title>
                 <Button onClick={() => handleGame(1)} variant="primary">
-                  Play Tic Tac Toe
+                  Play TicTacToe
                 </Button>
               </Card.Body>
             </Card>
@@ -65,7 +65,7 @@ function Games() {
               <Card.Body>
                 <Card.Title>Connect 4</Card.Title>
                 <Button onClick={() => handleGame(2)} variant="primary">
-                  Play Connect 4
+                  Play Connect4
                 </Button>
               </Card.Body>
             </Card>
