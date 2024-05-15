@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Wordle.css";
+import { Button } from "react-bootstrap";
 
 const WORDS = [
   "HEART",
@@ -11,7 +12,6 @@ const WORDS = [
   "CRUSH",
   "CUTIE",
   "SUGAR",
-  "RIZZY",
   "CUPID",
   "CHARM",
   "ROSES",
@@ -40,7 +40,7 @@ function Guess(props: any) {
     } else if (answer[i] == guess[i]) {
       color = "green";
     } else if (answer.includes(guess[i])) {
-      color = "yellow";
+      color = "#f1de31";
     } else {
       color = "grey";
     }
@@ -70,7 +70,7 @@ function Guess(props: any) {
 }
 
 function Wordle() {
-  const [guesses, setGuesses] = useState(Array(5).fill(""));
+  const [guesses, setGuesses] = useState(Array(6).fill(""));
   const [input, setInput] = useState("");
   const [attempt, setAttempt] = useState(0);
   const [answer, setAnswer] = useState(
@@ -84,7 +84,7 @@ function Wordle() {
       setAnswer(answerInput);
       setAnswerInput("");
       setAttempt(0);
-      setGuesses(Array(5).fill(""));
+      setGuesses(Array(6).fill(""));
     } else {
       getGameMessage();
     }
@@ -108,36 +108,35 @@ function Wordle() {
   }
 
   function getGameMessage() {
-    // scuffed bc of setAttempt desync in handleGuesses
-
     if (guesses[attempt - 1] === answer) {
       return "YOU WIN!!";
-    } else if (attempt >= 5) {
-      return "L! The answer was " + answer;
+    } else if (attempt >= 6) {
+      return "You lose! The word was " + answer;
     } else {
       return "";
     }
   }
 
   function resetGame() {
-    setGuesses(Array(5).fill(""));
+    setGuesses(Array(6).fill(""));
     setAttempt(0);
     setAnswer(WORDS[Math.floor(Math.random() * WORDS.length)]);
   }
 
   return (
-    <div id="wordle-game">
-      <h1 style={{ fontWeight: "bold" }}>Wordle</h1>
+    <div className="game">
+      <h1 className="game-title">Wordle</h1>
       <div id="guesses">
         <Guess guess={guesses[0]} answer={answer} />
         <Guess guess={guesses[1]} answer={answer} />
         <Guess guess={guesses[2]} answer={answer} />
         <Guess guess={guesses[3]} answer={answer} />
         <Guess guess={guesses[4]} answer={answer} />
+        <Guess guess={guesses[5]} answer={answer} />
       </div>
-      <h1>{getGameMessage()}</h1>
+      <h3 className="status">{getGameMessage()}</h3>
       <form onSubmit={handleGuess}>
-        <label>
+        <label className="status">
           {"GUESS: "}
           <input
             style={{ maxWidth: "100px", marginBottom: "10px" }}
@@ -154,12 +153,12 @@ function Wordle() {
           type="submit"
           value="SUBMIT"
           disabled={
-            attempt >= 5 || guesses[attempt - 1] === answer ? true : false
+            attempt >= 6 || guesses[attempt - 1] === answer ? true : false
           }
         />
       </form>
-      <form onSubmit={handleAnswer}>
-        <label>
+      {/* <form onSubmit={handleAnswer}>
+        <label className="status">
           {"CUSTOM: "}
           <input
             style={{ maxWidth: "100px", marginBottom: "10px" }}
@@ -176,13 +175,8 @@ function Wordle() {
           type="submit"
           value="SUBMIT"
         />
-      </form>
-      <button
-        style={{ backgroundColor: "lightgray", color: "black" }}
-        onClick={resetGame}
-      >
-        New Word
-      </button>
+      </form> */}
+      <Button onClick={resetGame}>New Word</Button>
     </div>
   );
 }

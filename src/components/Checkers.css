@@ -9,34 +9,26 @@
   margin-bottom: 10px;
 }
 
-.square {
+.squareCheckers {
   background: #fff;
   border: 1px solid #999;
   float: left;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: bold;
   line-height: 34px;
-  height: 50px;
+  height: 40px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 50px;
+  width: 40px;
 }
 
-.square:focus {
-  outline: none;
+.squareCheckers:focus {
+  border: solid;
 }
 
 .kbd-navigation .square:focus {
   background: #ddd;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.game-info {
-  margin-left: 20px;
-}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Checkers.css";
+import { Button } from "react-bootstrap";
 
 function Square(props: any) {
   return (
@@ -44,8 +45,9 @@ function Board() {
   const [numBlack, setNumBlack] = useState(12);
 
   function handleClick(row: number, col: number) {
+    if (numRed == 0 || numBlack == 0) return;
+
     if (squares[row][col] != "") {
-      console.log("selected piece");
       setPieceRow(row);
       setPieceCol(col);
       return;
@@ -133,8 +135,6 @@ function Board() {
       return;
     }
 
-    // console.log("valid move");
-
     // Move piece
     if (piece === "x" && row === 0) {
       squaresCopy[row][col] = "X";
@@ -154,9 +154,9 @@ function Board() {
 
   function checkStatus() {
     if (numRed == 0) {
-      return "Black wins!!!";
+      return "Black wins!";
     } else if (numBlack == 0) {
-      return "Red wins!!!";
+      return "Red wins!";
     }
     return "";
   }
@@ -175,7 +175,7 @@ function Board() {
         {[0, 1, 2, 3, 4, 5, 6, 7].map((col) => (
           <Square
             key={row + "-" + col}
-            color={(col + row) % 2 == 0 ? "white" : "#d19e66"}
+            color={(col + row) % 2 == 0 ? "#fce3b3" : "#d19e66"}
             value={squares[row][col]}
             onClick={() => handleClick(row, col)}
           />
@@ -185,28 +185,22 @@ function Board() {
   }
 
   return (
-    <>
+    <div className="game">
+      <h1 className="game-title">Checkers</h1>
       <br />
-      <div className="board-row">{generateRow(0)}</div>
-      <div className="board-row">{generateRow(1)}</div>
-      <div className="board-row">{generateRow(2)}</div>
-      <div className="board-row">{generateRow(3)}</div>
-      <div className="board-row">{generateRow(4)}</div>
-      <div className="board-row">{generateRow(5)}</div>
-      <div className="board-row">{generateRow(6)}</div>
-      <div className="board-row">{generateRow(7)}</div>
-      <h1 className="status">{checkStatus()}</h1>
-      <button
-        style={{
-          marginTop: "10px",
-          backgroundColor: "lightgray",
-          color: "black",
-        }}
-        onClick={resetGame}
-      >
-        New Game
-      </button>
-    </>
+      <div className="board" style={{ textAlign: "center" }}>
+        <div className="board-row">{generateRow(0)}</div>
+        <div className="board-row">{generateRow(1)}</div>
+        <div className="board-row">{generateRow(2)}</div>
+        <div className="board-row">{generateRow(3)}</div>
+        <div className="board-row">{generateRow(4)}</div>
+        <div className="board-row">{generateRow(5)}</div>
+        <div className="board-row">{generateRow(6)}</div>
+        <div className="board-row">{generateRow(7)}</div>
+      </div>
+      <h3 className="status">{checkStatus()}</h3>
+      <Button onClick={resetGame}>New Game</Button>
+    </div>
   );
 }
 

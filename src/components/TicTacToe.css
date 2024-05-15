@@ -5,27 +5,32 @@
   display: table;
 }
 
+.board-row {
+  display: flex;
+  justify-content: center;
+}
+
 .status {
   margin-bottom: 10px;
 }
 
-.squareCheckers {
+.square {
   background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 26px;
+  border: 1px solid black;
+  font-size: 32px;
   font-weight: bold;
   line-height: 34px;
-  height: 40px;
+  height: 50px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 40px;
+  width: 50px;
+   
 }
 
-.squareCheckers:focus {
-  border: solid;
+.square:focus {
+  outline: none;
 }
 
 .kbd-navigation .square:focus {
@@ -33,10 +38,12 @@
 }
 
 .game {
-  display: flex;
-  flex-direction: row;
+  text-align: center;
+  padding: 10px
 }
 
-.game-info {
-  margin-left: 20px;
+.game-title{
+  color: black;
+  font-weight: bold;
+  text-align: center;
 }

@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import Home from "./Home";
-import Resume from "./Resume";
-import Links from "./Links";
-import Games from "./Games";
-import Wordle from "./Wordle";
-import TicTacToe from "./TicTacToe";
-import Connect4 from "./Connect4";
-import Checkers from "./Checkers";
+import Home from "./components/Home";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
+import Projects from "./components/Projects";
+import Games from "./components/Games";
+import Wordle from "./components/Wordle";
+import TicTacToe from "./components/TicTacToe";
+import Connect4 from "./components/Connect4";
+import Checkers from "./components/Checkers";
 import "bootstrap/dist/css/bootstrap.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
@@ -22,12 +23,16 @@ const router = createHashRouter([
         element: <Home />,
       },
       {
-        path: "resume",
-        element: <Resume />,
+        path: "experience",
+        element: <Experience />,
       },
       {
-        path: "links",
-        element: <Links />,
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "projects",
+        element: <Projects />,
       },
       {
         path: "games",

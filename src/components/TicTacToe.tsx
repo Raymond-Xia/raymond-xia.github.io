@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./TicTacToe.css";
+import { Button } from "react-bootstrap";
 
 function Square(props: any) {
   return (
@@ -24,12 +25,17 @@ function calculateWinner(squares: Array<string>) {
     [0, 4, 8],
     [2, 4, 6],
   ];
+  let emptyExists = false;
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
+    if (squares[a] == null || squares[b] == null || squares[c] == null) {
+      emptyExists = true;
+    }
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
+  if (!emptyExists) return "XO";
   return null;
 }
 
@@ -39,7 +45,6 @@ function Board(props: any) {
   const [winner, setWinner] = useState("");
 
   function handleClick(i: number) {
-    console.log(squares[i]);
     if (winner != "" || squares[i]) {
       // if we have a winner or click on occupied square, do nothing
       return;
@@ -57,10 +62,15 @@ function Board(props: any) {
   }
 
   function checkStatus() {
-    if (winner != "") {
-      return winner + " wins!!";
+    if (winner == "X") {
+      return "Player X wins!";
+    } else if (winner == "O") {
+      return "Player O wins!";
+    } else if (winner == "XO") {
+      return "It's a draw!";
+    } else {
+      return xIsNext ? "Next player: X" : "Next player: O";
     }
-    return xIsNext ? "Next player: X" : "Next player: O";
   }
 
   function resetGame() {
@@ -70,8 +80,8 @@ function Board(props: any) {
   }
 
   return (
-    <>
-      <h1 className="status">{checkStatus()}</h1>
+    <div className="game">
+      <h1 className="game-title">Tic Tac Toe</h1>
       <div className="board-row">
         <Square value={squares[0]} onClick={() => handleClick(0)} />
         <Square value={squares[1]} onClick={() => handleClick(1)} />
@@ -87,17 +97,9 @@ function Board(props: any) {
         <Square value={squares[7]} onClick={() => handleClick(7)} />
         <Square value={squares[8]} onClick={() => handleClick(8)} />
       </div>
-      <button
-        style={{
-          marginTop: "10px",
-          backgroundColor: "lightgray",
-          color: "black",
-        }}
-        onClick={resetGame}
-      >
-        New Game
-      </button>
-    </>
+      <h3 className="status">{checkStatus()}</h3>
+      <Button onClick={resetGame}>New Game</Button>
+    </div>
   );
 }
 

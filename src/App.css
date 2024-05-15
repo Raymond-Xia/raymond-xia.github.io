@@ -1,3 +1,36 @@
 body {
   background-color: black;
+  color: white;
+}
+
+.main-section {
+  padding-top: 70px;
+}
+
+.status {
+  color: black;
+}
+
+.company-icon {
+  max-width: 150px;
+}
+
+.company-row {
+  margin-bottom: 50px;
+}
+
+.contact-icon {
+  max-width: 40px;
+}
+
+.experience-title {
+  font-weight: bold;
+}
+
+.card-image {
+  background-color: white;
+}
+
+.card {
+  margin-bottom: 10px;
 }

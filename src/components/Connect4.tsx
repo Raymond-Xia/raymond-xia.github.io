@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./TicTacToe.css";
+import { Button } from "react-bootstrap";
 
 function Square(props: any) {
   return (
@@ -19,13 +20,12 @@ function Board() {
   function handleClick(row: number, col: number) {
     let targetRow = squares.length - 1;
     // find last empty row
-    while (squares[targetRow][col] != "" && targetRow > 0) {
+    while (targetRow >= 0 && squares[targetRow][col] != "") {
       targetRow -= 1;
     }
     if (targetRow < 0) return; // ignore click if column full
-    if (winner != "") {
-      return;
-    }
+    if (winner != "") return; // ignore if there is already a
+
     let w = calculateWinner(targetRow, col);
     if (w) {
       setWinner(w);
@@ -39,26 +39,30 @@ function Board() {
 
   function checkStatus() {
     if (winner != "") {
-      return winner === "X" ? "Red wins!!!" : "Blue wins!!!" + "";
+      if (winner === "X") {
+        return "Red wins!";
+      } else if (winner === "O") {
+        return "Blue wins!";
+      } else {
+        return "It's a draw!";
+      }
     } else {
       return xIsNext ? "Next player: Red" : "Next player: Blue";
     }
   }
 
   function calculateWinner(row: number, col: number) {
-    // check all 4 directions for adjacent 4-lines
+    // check all 4 directions for adjacent 4-lines (horizontal, vertical, diagonal ascending, diagonal descending)
     let player = xIsNext ? "X" : "O";
-    console.log(row, col);
 
-    // horizontal
-    // left
+    // horizontal left
     let count = 1;
     let x = 1;
     while (col - x >= 0 && squares[row][col - x] === player) {
       count++;
       x++;
     }
-    // right
+    // horizontal right
     x = 1;
     while (col + x < squares[0].length && squares[row][col + x] == player) {
       count++;
@@ -69,15 +73,14 @@ function Board() {
       return player;
     }
 
-    // vertical
-    // up
+    // vertical up
     count = 1;
     let y = 1;
     while (row - y >= 0 && squares[row - y][col] === player) {
       count++;
       y++;
     }
-    // down
+    // vertical down
     y = 1;
     while (row + y < squares.length && squares[row + y][col] === player) {
       count++;
@@ -88,8 +91,7 @@ function Board() {
       return player;
     }
 
-    // desc diagonal
-    // left
+    // descending diagonal left
     count = 1;
     x = 1;
     y = 1;
@@ -102,7 +104,7 @@ function Board() {
       x++;
       y++;
     }
-    // down
+    // descending diagonal right
     y = 1;
     while (
       row + y < squares.length &&
@@ -118,8 +120,7 @@ function Board() {
       return player;
     }
 
-    // asc diagonal
-    // left
+    // ascending diagonal left
     count = 1;
     x = 1;
     y = 1;
@@ -132,10 +133,10 @@ function Board() {
       x++;
       y++;
     }
-    // down
+    // ascending diagonal right
     y = 1;
     while (
-      row - y <= 0 &&
+      row - y >= 0 &&
       col + x < squares[0].length &&
       squares[row - y][col + x] === player
     ) {
@@ -146,6 +147,10 @@ function Board() {
 
     if (count >= 4) {
       return player;
+    }
+
+    if (squares.flat().filter((val) => val === "").length === 1) {
+      return "XO";
     }
 
     return null;
@@ -160,8 +165,8 @@ function Board() {
   }
 
   return (
-    <>
-      <h1 className="status">{checkStatus()}</h1>
+    <div className="game">
+      <h1 className="game-title">Connect 4</h1>
       <div className="board-row">
         <Square value={squares[0][0]} onClick={() => handleClick(0, 0)} />
         <Square value={squares[0][1]} onClick={() => handleClick(0, 1)} />
@@ -216,17 +221,9 @@ function Board() {
         <Square value={squares[5][5]} onClick={() => handleClick(5, 5)} />
         <Square value={squares[5][6]} onClick={() => handleClick(5, 6)} />
       </div>
-      <button
-        style={{
-          marginTop: "10px",
-          backgroundColor: "lightgray",
-          color: "black",
-        }}
-        onClick={resetGame}
-      >
-        New Game
-      </button>
-    </>
+      <h3 className="status">{checkStatus()}</h3>
+      <Button onClick={resetGame}>New Game</Button>
+    </div>
   );
 }
 
