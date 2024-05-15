@@ -28,7 +28,7 @@ function Experience() {
             </Row>
             <p>
               I developed production code for HR software using Java Spring Boot
-              and Angular. Spearheaded and demoed new features, participated in
+              and Angular. Designed and demoed new features, participated in
               code reviews, and resolved complex multi-backend defects.
             </p>
             <Row xs="3" md="6" style={{ color: "grey" }}>
@@ -56,8 +56,11 @@ function Experience() {
               </Col>
             </Row>
             <p>
-              I developed Python Robot test suites and administered the training
-              pipelines of 8 machine learning security models.
+              I extended the Python Robot test suites for the training and
+              deployment of 8 machine learning security models. Integrated
+              continuous training components, reworked data ingestion, and
+              produced video guides on machine learning model training and
+              deployment.
             </p>
             <Row xs="3" md="6" style={{ color: "grey" }}>
               <Col>Python</Col>
@@ -86,8 +89,10 @@ function Experience() {
               </Col>
             </Row>
             <p>
-              I developed and maintained production software for the mobile
-              security service using Java Spring Boot and React.
+              I developed and maintained production software for the Mobile
+              Threat Defense service using Java Spring Boot and React. Designed
+              new features, produced a SQL database cleaner, and extended the
+              TestNG test suite.
             </p>
             <Row xs="3" md="6" style={{ color: "grey" }}>
               <Col>Java</Col>
@@ -95,7 +100,7 @@ function Experience() {
               <Col>Spring Boot</Col>
               <Col>React</Col>
               <Col>MySQL</Col>
-              <Col>JUnit</Col>
+              <Col>TestNG</Col>
             </Row>
           </Col>
         </Row>
@@ -114,14 +119,18 @@ function Experience() {
               </Col>
             </Row>
             <p>
-              I designed new test suites and vetted new releases of medical
-              imaging software using Java, JUnit, and Selenium.
+              I designed JUnit Selenium test suites for new features and vetted
+              new releases for medical imaging software. Performed regression
+              testing, produced detailed reports/solutions for test failures,
+              and created a Java test suite filter tool to enhance debugging.
             </p>
             <Row xs="3" md="6" style={{ color: "grey" }}>
               <Col>Java</Col>
               <Col>JUnit</Col>
               <Col>Selenium</Col>
               <Col>Jenkins</Col>
+              <Col>Bash</Col>
+              <Col>Agile</Col>
             </Row>
           </Col>
         </Row>
@@ -140,14 +149,18 @@ function Experience() {
               </Col>
             </Row>
             <p>
-              I pioneered iOS automated test suites and wrote/analyzed over 3000
-              test cases for Fortune 500 mobile applications.
+              I pioneered the iOS automated test suite and wrote/analyzed over
+              3000 test cases for Fortune 500 mobile applications. Utilized
+              creative tools to accelerate manual test verification speed and
+              managed deadlines efficiently.
             </p>
             <Row xs="3" md="6" style={{ color: "grey" }}>
+              <Col>Swift</Col>
               <Col>XCUI</Col>
               <Col>iOS</Col>
               <Col>Android</Col>
               <Col>Excel</Col>
+              <Col>Agile</Col>
             </Row>
           </Col>
         </Row>
@@ -167,13 +180,17 @@ function Experience() {
             </Row>
             <p>
               I investigated and resolved numerous Angular defects in the event
-              management software and refactored the JavaScript codebase.
+              management software and refactored inconsistencies in the
+              JavaScript codebase, improving app quality and smoothing out
+              future development.
             </p>
             <Row xs="3" md="6" style={{ color: "grey" }}>
               <Col>JavaScript</Col>
               <Col>Angular</Col>
               <Col>Selenium</Col>
               <Col>Nightwatch</Col>
+              <Col>Git</Col>
+              <Col>Agile</Col>
             </Row>
           </Col>
         </Row>
