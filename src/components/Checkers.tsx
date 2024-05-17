@@ -45,17 +45,26 @@ function Board() {
   const [numRed, setNumRed] = useState(12);
   const [numBlack, setNumBlack] = useState(12);
 
+  function highlightPiece(row?: number, col?: number) {
+    if (row && col) {
+      document.getElementById(row + "-" + col)?.focus();
+    } else {
+      document.getElementById(pieceRow + "-" + pieceCol)?.focus();
+    }
+  }
+
   function handleClick(targetRow: number, targetCol: number) {
     if (numRed === 0 || numBlack === 0) return;
 
     if (squares[targetRow][targetCol] != "") {
       // select piece
-      document.getElementById(targetRow + "-" + targetCol)?.focus();
+      highlightPiece(targetRow, targetCol);
       setPieceRow(targetRow);
       setPieceCol(targetCol);
       return;
     } else if (pieceRow === -1) {
       // ignore click if empty square without moving piece
+      highlightPiece();
       return;
     }
 
@@ -66,7 +75,7 @@ function Board() {
       !(rowDiff === 2 && colDiff === 2)
     ) {
       // ignore click if not 1 square move or 2 square jump
-      document.getElementById(pieceRow + "-" + pieceCol)?.focus();
+      highlightPiece();
       return;
     }
 
@@ -79,6 +88,7 @@ function Board() {
       // move up
       if (piece === "red") {
         // regular red pieces can't move upward (backward)
+        highlightPiece();
         return;
       }
 
@@ -92,6 +102,7 @@ function Board() {
           if (piece.toLowerCase() === "black") numRedCopy--;
           if (piece.toLowerCase() === "red") numBlackCopy--;
         } else {
+          highlightPiece();
           return;
         }
       } else if (targetRow === pieceRow - 2 && targetCol === pieceCol + 2) {
@@ -104,6 +115,7 @@ function Board() {
           if (piece.toLowerCase() === "black") numRedCopy--;
           if (piece.toLowerCase() === "red") numBlackCopy--;
         } else {
+          highlightPiece();
           return;
         }
       }
@@ -111,6 +123,7 @@ function Board() {
       // move down
       if (piece === "black") {
         // regular black pieces can't move downward (backward)
+        highlightPiece();
         return;
       }
 
