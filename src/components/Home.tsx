@@ -72,17 +72,17 @@ function Home() {
                 </a>
               </Col>
               <Col xs lg="3">
-                <a href="https://github.com/raymond-xia">
+                <a href="https://github.com/raymond-xia" target="_blank">
                   <img className="contact-icon" src={Github} />
                 </a>
               </Col>
               <Col xs lg="3">
-                <a href="https://linkedin.com/in/raymond-xia">
+                <a href="https://linkedin.com/in/raymond-xia" target="_blank">
                   <img className="contact-icon" src={LinkedIn} />
                 </a>
               </Col>
               <Col xs lg="3">
-                <a href={resumeFile}>
+                <a href={resumeFile} target="_blank">
                   <img className="contact-icon" src={page} />
                 </a>
               </Col>

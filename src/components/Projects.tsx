@@ -16,7 +16,11 @@ function Projects() {
               <Card.Img className="card-image" src={snaplapse} />
               <Card.Body>
                 <Card.Title>SnapLapse</Card.Title>
-                <Button href="https://github.com/snaplapse" variant="primary">
+                <Button
+                  href="https://github.com/snaplapse"
+                  target="_blank"
+                  variant="primary"
+                >
                   SnapLapse
                 </Button>
               </Card.Body>
@@ -29,6 +33,7 @@ function Projects() {
                 <Card.Title>Among Bots</Card.Title>
                 <Button
                   href="https://github.com/Raymond-Xia/among-bots"
+                  target="_blank"
                   variant="primary"
                 >
                   Among Bots
@@ -43,6 +48,7 @@ function Projects() {
                 <Card.Title>Chess</Card.Title>
                 <Button
                   href="https://github.com/Raymond-Xia/chess"
+                  target="_blank"
                   variant="primary"
                 >
                   Chess
@@ -57,6 +63,7 @@ function Projects() {
                 <Card.Title>Spotify Stats</Card.Title>
                 <Button
                   href="https://github.com/Raymond-Xia/spotify-stats"
+                  target="_blank"
                   variant="primary"
                 >
                   Spotify Stats

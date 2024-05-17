@@ -74,7 +74,7 @@ function Board() {
     }
     // horizontal right
     x = 1;
-    while (col + x < squares[0].length && squares[row][col + x] == player) {
+    while (col + x < squares[0].length && squares[row][col + x] === player) {
       line[count] = document.getElementById(row + "-" + (col + x))!;
       count++;
       x++;

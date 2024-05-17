@@ -28,7 +28,7 @@ function calculateWinner(squares: Array<string>) {
   let emptyExists = false;
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    if (squares[a] == null || squares[b] == null || squares[c] == null) {
+    if (squares[a] === null || squares[b] === null || squares[c] === null) {
       emptyExists = true;
     }
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -62,11 +62,11 @@ function Board(props: any) {
   }
 
   function checkStatus() {
-    if (winner == "X") {
+    if (winner === "X") {
       return "Player X wins!";
-    } else if (winner == "O") {
+    } else if (winner === "O") {
       return "Player O wins!";
-    } else if (winner == "XO") {
+    } else if (winner === "XO") {
       return "It's a draw!";
     } else {
       return " ";

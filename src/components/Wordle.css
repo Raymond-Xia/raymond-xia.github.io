@@ -22,3 +22,10 @@
   content: "";
   display: table;
 }
+
+.key-button {
+  padding: 9px;
+  border-radius: 5px;
+  margin: 2px;
+  border: none;
+}

@@ -10,13 +10,13 @@ function Square(props: any) {
       className="squareCheckers"
       onClick={props.onClick}
     >
-      {props.value === "x"
+      {props.value === "black"
         ? "⚫"
-        : props.value === "o"
+        : props.value === "red"
         ? "🔴"
-        : props.value === "X"
+        : props.value === "BLACK"
         ? "🖤"
-        : props.value === "O"
+        : props.value === "RED"
         ? "❤️"
         : ""}
     </button>
@@ -29,13 +29,13 @@ function Board() {
   );
   for (let i = 0; i < 3; i++) {
     for (let j = (i + 1) % 2; j < initialValue.length; j += 2) {
-      initialValue[i][j] = "o";
+      initialValue[i][j] = "red";
     }
   }
 
   for (let i = initialValue.length - 3; i < initialValue.length; i++) {
     for (let j = (i + 1) % 2; j < initialValue.length; j += 2) {
-      initialValue[i][j] = "x";
+      initialValue[i][j] = "black";
     }
   }
 
@@ -45,119 +45,125 @@ function Board() {
   const [numRed, setNumRed] = useState(12);
   const [numBlack, setNumBlack] = useState(12);
 
-  function handleClick(row: number, col: number) {
-    if (numRed == 0 || numBlack == 0) return;
+  function handleClick(targetRow: number, targetCol: number) {
+    if (numRed === 0 || numBlack === 0) return;
 
-    if (squares[row][col] != "") {
-      document.getElementById(row + "-" + col)?.focus();
-      setPieceRow(row);
-      setPieceCol(col);
+    if (squares[targetRow][targetCol] != "") {
+      // select piece
+      document.getElementById(targetRow + "-" + targetCol)?.focus();
+      setPieceRow(targetRow);
+      setPieceCol(targetCol);
+      return;
+    } else if (pieceRow === -1) {
+      // ignore click if empty square without moving piece
       return;
     }
 
-    const squaresCopy = squares.slice();
+    let rowDiff = Math.abs(targetRow - pieceRow);
+    let colDiff = Math.abs(targetCol - pieceCol);
+    if (
+      !(rowDiff === 1 && colDiff === 1) &&
+      !(rowDiff === 2 && colDiff === 2)
+    ) {
+      // ignore click if not 1 square move or 2 square jump
+      document.getElementById(pieceRow + "-" + pieceCol)?.focus();
+      return;
+    }
 
+    let squaresCopy = squares.slice();
     let piece = squares[pieceRow][pieceCol];
     let numRedCopy = numRed;
     let numBlackCopy = numBlack;
-    if (row < pieceRow) {
+
+    if (targetRow < pieceRow) {
       // move up
-      if (piece === "o") {
+      if (piece === "red") {
         // regular red pieces can't move upward (backward)
         return;
       }
 
-      if (row === pieceRow - 2 && col === pieceCol - 2) {
-        // jump up left
+      if (targetRow === pieceRow - 2 && targetCol === pieceCol - 2) {
+        // jump up left and capture opposing piece
         if (
           squares[pieceRow - 1][pieceCol - 1].toLowerCase() ===
-          (piece.toLowerCase() === "x" ? "o" : "x")
+          (piece.toLowerCase() === "black" ? "red" : "black")
         ) {
           squaresCopy[pieceRow - 1][pieceCol - 1] = "";
-          if (piece.toLowerCase() === "x") numRedCopy--;
-          if (piece.toLowerCase() === "o") numBlackCopy--;
+          if (piece.toLowerCase() === "black") numRedCopy--;
+          if (piece.toLowerCase() === "red") numBlackCopy--;
         } else {
           return;
         }
-      } else if (row === pieceRow - 2 && col === pieceCol + 2) {
-        // jump up right
+      } else if (targetRow === pieceRow - 2 && targetCol === pieceCol + 2) {
+        // jump up right and capture opposing piece
         if (
           squares[pieceRow - 1][pieceCol + 1].toLowerCase() ===
-          (piece.toLowerCase() === "x" ? "o" : "x")
+          (piece.toLowerCase() === "black" ? "red" : "black")
         ) {
           squaresCopy[pieceRow - 1][pieceCol + 1] = "";
-          if (piece.toLowerCase() === "x") numRedCopy--;
-          if (piece.toLowerCase() === "o") numBlackCopy--;
+          if (piece.toLowerCase() === "black") numRedCopy--;
+          if (piece.toLowerCase() === "red") numBlackCopy--;
         } else {
           return;
         }
       }
-    } else if (row > pieceRow) {
+    } else if (targetRow > pieceRow) {
       // move down
-      if (piece === "x") {
+      if (piece === "black") {
         // regular black pieces can't move downward (backward)
         return;
       }
 
-      if (row === pieceRow + 2 && col === pieceCol - 2) {
-        // jump down left
+      if (targetRow === pieceRow + 2 && targetCol === pieceCol - 2) {
+        // jump down left and capture opposing piece
         if (
           squares[pieceRow + 1][pieceCol - 1].toLowerCase() ===
-          (piece.toLowerCase() === "x" ? "o" : "x")
+          (piece.toLowerCase() === "black" ? "red" : "black")
         ) {
           squaresCopy[pieceRow + 1][pieceCol - 1] = "";
-          if (piece.toLowerCase() === "x") numRedCopy--;
-          if (piece.toLowerCase() === "o") numBlackCopy--;
+          if (piece.toLowerCase() === "black") numRedCopy--;
+          if (piece.toLowerCase() === "red") numBlackCopy--;
         } else {
           return;
         }
-      } else if (
-        // jump down right
-        row === pieceRow + 2 &&
-        col === pieceCol + 2
-      ) {
+      } else if (targetRow === pieceRow + 2 && targetCol === pieceCol + 2) {
+        // jump down right and capture opposing piece
         if (
           squares[pieceRow + 1][pieceCol + 1].toLowerCase() ===
-          (piece.toLowerCase() === "x" ? "o" : "x")
+          (piece.toLowerCase() === "black" ? "red" : "black")
         ) {
           squaresCopy[pieceRow + 1][pieceCol + 1] = "";
-          if (piece.toLowerCase() === "x") numRedCopy--;
-          if (piece.toLowerCase() === "o") numBlackCopy--;
+          if (piece.toLowerCase() === "black") numRedCopy--;
+          if (piece.toLowerCase() === "red") numBlackCopy--;
         } else {
           return;
         }
       }
     }
 
-    if (
-      !(Math.abs(row - pieceRow) === 1 && Math.abs(col - pieceCol) === 1) &&
-      !(Math.abs(row - pieceRow) === 2 && Math.abs(col - pieceCol) === 2)
-    ) {
-      // if not 2 square jump or 1 square move, ignore click
-      return;
-    }
-
     // Move piece
-    if (piece === "x" && row === 0) {
-      squaresCopy[row][col] = "X";
-    } else if (piece === "o" && row === 7) {
-      squaresCopy[row][col] = "O";
+    if (piece === "black" && targetRow === 0) {
+      // king black
+      squaresCopy[targetRow][targetCol] = "BLACK";
+    } else if (piece === "red" && targetRow === 7) {
+      // king red
+      squaresCopy[targetRow][targetCol] = "RED";
     } else {
-      squaresCopy[row][col] = squares[pieceRow][pieceCol];
+      squaresCopy[targetRow][targetCol] = squares[pieceRow][pieceCol];
     }
     squaresCopy[pieceRow][pieceCol] = "";
 
     setSquares(squaresCopy);
     setNumBlack(numBlackCopy);
     setNumRed(numRedCopy);
-    setPieceRow(row);
-    setPieceCol(col);
+    setPieceRow(targetRow);
+    setPieceCol(targetCol);
   }
 
   function checkStatus() {
-    if (numRed == 0) {
+    if (numRed === 0) {
       return "Black wins!";
-    } else if (numBlack == 0) {
+    } else if (numBlack === 0) {
       return "Red wins!";
     }
     return "";
@@ -178,7 +184,7 @@ function Board() {
           <Square
             key={row + "-" + col}
             id={row + "-" + col}
-            color={(col + row) % 2 == 0 ? "#fce3b3" : "#d19e66"}
+            color={(col + row) % 2 === 0 ? "#fce3b3" : "#d19e66"}
             value={squares[row][col]}
             onClick={() => handleClick(row, col)}
           />
@@ -190,7 +196,6 @@ function Board() {
   return (
     <div className="game">
       <h1 className="game-title">Checkers</h1>
-      <br />
       <div className="board" style={{ textAlign: "center" }}>
         <div className="board-row">{generateRow(0)}</div>
         <div className="board-row">{generateRow(1)}</div>
