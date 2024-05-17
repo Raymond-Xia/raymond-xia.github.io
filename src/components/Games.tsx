@@ -92,7 +92,7 @@ function Games() {
         </Row>
       </Container>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal style={{ marginTop: "150px" }} show={show} onHide={handleClose}>
         {getGame()}
       </Modal>
     </div>

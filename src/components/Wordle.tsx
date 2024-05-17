@@ -68,8 +68,17 @@ function Guess(props: any) {
 }
 
 function KeyButton(props: any) {
+  let textColor = props.backgroundColor ? "white" : "black";
   return (
-    <button className="key-button" onClick={props.onClick} style={props.style}>
+    <button
+      className="key-button"
+      onClick={props.onClick}
+      style={{
+        backgroundColor: props.backgroundColor,
+        color: textColor,
+        fontSize: props.fontSize,
+      }}
+    >
       {props.letter}
     </button>
   );
@@ -90,6 +99,7 @@ function Wordle() {
       Array.from({ length: WORD_LENGTH }, () => "")
     )
   );
+  const [keyColors, setKeyColors] = useState(new Map<string, string>());
   const [winner, setWinner] = useState("");
   const [index, setIndex] = useState(0);
   let usedWords = [answer];
@@ -117,11 +127,13 @@ function Wordle() {
     if (guess.length != WORD_LENGTH) return;
 
     let colorsCopy = colors.slice();
+    let keyColorsCopy = keyColors;
     let answerCopy = answer.split("");
     for (let i = 0; i < WORD_LENGTH; i++) {
       // check match (greens) and exclude letters from check
       if (guess[i] === answerCopy[i]) {
         colorsCopy[attempt][i] = "green";
+        keyColorsCopy.set(guess[i], "green");
         guess[i] = "";
       }
     }
@@ -130,10 +142,14 @@ function Wordle() {
       // check yellows
       if (guess[i] != "") {
         if (answerCopy.includes(guess[i])) {
-          colorsCopy[attempt][i] = "gold";
+          colorsCopy[attempt][i] = "goldenrod";
+          if (!keyColorsCopy.has(guess[i])) {
+            keyColorsCopy.set(guess[i], "goldenrod");
+          }
           guess[i] = "";
         } else {
           colorsCopy[attempt][i] = "grey";
+          keyColorsCopy.set(guess[i], "grey");
         }
       }
     }
@@ -141,6 +157,7 @@ function Wordle() {
     calculateWinner(letters[attempt].join(""));
 
     setColors(colorsCopy);
+    setKeyColors(keyColorsCopy);
     setAttempt(attempt + 1);
     setIndex(0);
   }
@@ -241,47 +258,147 @@ function Wordle() {
         />
       </form> */}
 
-      <div style={{ margin: "10px" }} className="keyboard">
+      <div className="keyboard" style={{ margin: "10px" }}>
         <div className="board-row">
-          <KeyButton onClick={() => handleLetter("Q")} letter="Q" />
-          <KeyButton onClick={() => handleLetter("W")} letter="W" />
-          <KeyButton onClick={() => handleLetter("E")} letter="E" />
-          <KeyButton onClick={() => handleLetter("R")} letter="R" />
-          <KeyButton onClick={() => handleLetter("T")} letter="T" />
-          <KeyButton onClick={() => handleLetter("Y")} letter="Y" />
-          <KeyButton onClick={() => handleLetter("U")} letter="U" />
-          <KeyButton onClick={() => handleLetter("I")} letter="I" />
-          <KeyButton onClick={() => handleLetter("O")} letter="O" />
-          <KeyButton onClick={() => handleLetter("P")} letter="P" />
-        </div>
-        <div className="board-row">
-          <KeyButton onClick={() => handleLetter("A")} letter="A" />
-          <KeyButton onClick={() => handleLetter("S")} letter="S" />
-          <KeyButton onClick={() => handleLetter("D")} letter="D" />
-          <KeyButton onClick={() => handleLetter("F")} letter="F" />
-          <KeyButton onClick={() => handleLetter("G")} letter="G" />
-          <KeyButton onClick={() => handleLetter("H")} letter="H" />
-          <KeyButton onClick={() => handleLetter("J")} letter="J" />
-          <KeyButton onClick={() => handleLetter("K")} letter="K" />
-          <KeyButton onClick={() => handleLetter("L")} letter="L" />
+          <KeyButton
+            onClick={() => handleLetter("Q")}
+            letter="Q"
+            backgroundColor={keyColors.get("Q")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("W")}
+            letter="W"
+            backgroundColor={keyColors.get("W")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("E")}
+            letter="E"
+            backgroundColor={keyColors.get("E")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("R")}
+            letter="R"
+            backgroundColor={keyColors.get("R")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("T")}
+            letter="T"
+            backgroundColor={keyColors.get("T")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("Y")}
+            letter="Y"
+            backgroundColor={keyColors.get("Y")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("U")}
+            letter="U"
+            backgroundColor={keyColors.get("U")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("I")}
+            letter="I"
+            backgroundColor={keyColors.get("I")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("O")}
+            letter="O"
+            backgroundColor={keyColors.get("O")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("P")}
+            letter="P"
+            backgroundColor={keyColors.get("P")}
+          />
         </div>
         <div className="board-row">
           <KeyButton
-            onClick={handleGuess}
-            letter="Enter"
-            style={{ fontSize: "0.6rem" }}
+            onClick={() => handleLetter("A")}
+            letter="A"
+            backgroundColor={keyColors.get("A")}
           />
-          <KeyButton onClick={() => handleLetter("Z")} letter="Z" />
-          <KeyButton onClick={() => handleLetter("X")} letter="X" />
-          <KeyButton onClick={() => handleLetter("C")} letter="C" />
-          <KeyButton onClick={() => handleLetter("V")} letter="V" />
-          <KeyButton onClick={() => handleLetter("B")} letter="B" />
-          <KeyButton onClick={() => handleLetter("N")} letter="N" />
-          <KeyButton onClick={() => handleLetter("M")} letter="M" />
+          <KeyButton
+            onClick={() => handleLetter("S")}
+            letter="S"
+            backgroundColor={keyColors.get("S")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("D")}
+            letter="D"
+            backgroundColor={keyColors.get("D")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("F")}
+            letter="F"
+            backgroundColor={keyColors.get("F")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("G")}
+            letter="G"
+            backgroundColor={keyColors.get("G")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("H")}
+            letter="H"
+            backgroundColor={keyColors.get("H")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("J")}
+            letter="J"
+            backgroundColor={keyColors.get("J")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("K")}
+            letter="K"
+            backgroundColor={keyColors.get("K")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("L")}
+            letter="L"
+            backgroundColor={keyColors.get("L")}
+          />
+        </div>
+        <div className="board-row">
+          <KeyButton onClick={handleGuess} letter="ENTER" fontSize="0.7rem" />
+          <KeyButton
+            onClick={() => handleLetter("Z")}
+            letter="Z"
+            backgroundColor={keyColors.get("Z")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("X")}
+            letter="X"
+            backgroundColor={keyColors.get("X")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("C")}
+            letter="C"
+            backgroundColor={keyColors.get("C")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("V")}
+            letter="V"
+            backgroundColor={keyColors.get("V")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("B")}
+            letter="B"
+            backgroundColor={keyColors.get("B")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("N")}
+            letter="N"
+            backgroundColor={keyColors.get("N")}
+          />
+          <KeyButton
+            onClick={() => handleLetter("M")}
+            letter="M"
+            backgroundColor={keyColors.get("M")}
+          />
           <KeyButton
             onClick={handleBackSpace}
             letter="Back"
-            style={{ fontSize: "0.6rem" }}
+            fontSize="0.7rem"
           />
         </div>
       </div>
