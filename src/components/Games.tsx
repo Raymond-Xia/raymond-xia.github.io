@@ -35,54 +35,62 @@ function Games() {
     <div className="section">
       <h1 className="display-5">Games</h1>
       <hr />
-      <div className="grid-container">
+      <Container>
         <Row xs="2" md="4">
           <Col>
-            <Card bg="dark" data-bs-theme="dark">
+            <Card
+              className="game-card"
+              bg="dark"
+              data-bs-theme="dark"
+              onClick={() => handleGame(0)}
+            >
               <Card.Img className="game-image" src={wordle} />
               <Card.Body>
                 <Card.Title>Wordle</Card.Title>
-                <Button onClick={() => handleGame(0)} variant="primary">
-                  Play Wordle
-                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card bg="dark" data-bs-theme="dark">
+            <Card
+              className="game-card"
+              bg="dark"
+              data-bs-theme="dark"
+              onClick={() => handleGame(1)}
+            >
               <Card.Img className="game-image" src={tictactoe} />
               <Card.Body>
                 <Card.Title>Tic Tac Toe</Card.Title>
-                <Button onClick={() => handleGame(1)} variant="primary">
-                  Play TicTacToe
-                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card bg="dark" data-bs-theme="dark">
+            <Card
+              className="game-card"
+              bg="dark"
+              data-bs-theme="dark"
+              onClick={() => handleGame(2)}
+            >
               <Card.Img className="game-image" src={connect4} />
               <Card.Body>
                 <Card.Title>Connect 4</Card.Title>
-                <Button onClick={() => handleGame(2)} variant="primary">
-                  Play Connect4
-                </Button>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card bg="dark" text="light">
+            <Card
+              className="game-card"
+              bg="dark"
+              text="light"
+              onClick={() => handleGame(3)}
+            >
               <Card.Img className="game-image" src={checkers} />
               <Card.Body>
                 <Card.Title>Checkers</Card.Title>
-                <Button onClick={() => handleGame(3)} variant="primary">
-                  Play Checkers
-                </Button>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-      </div>
+      </Container>
 
       <Modal show={show} onHide={handleClose}>
         {getGame()}

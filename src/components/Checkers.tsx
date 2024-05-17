@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 function Square(props: any) {
   return (
     <button
+      id={props.id}
       style={{ backgroundColor: props.color }}
       className="squareCheckers"
       onClick={props.onClick}
@@ -48,6 +49,7 @@ function Board() {
     if (numRed == 0 || numBlack == 0) return;
 
     if (squares[row][col] != "") {
+      document.getElementById(row + "-" + col)?.focus();
       setPieceRow(row);
       setPieceCol(col);
       return;
@@ -175,6 +177,7 @@ function Board() {
         {[0, 1, 2, 3, 4, 5, 6, 7].map((col) => (
           <Square
             key={row + "-" + col}
+            id={row + "-" + col}
             color={(col + row) % 2 == 0 ? "#fce3b3" : "#d19e66"}
             value={squares[row][col]}
             onClick={() => handleClick(row, col)}

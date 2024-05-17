@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 
 function Square(props: any) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button id={props.id} className="square" onClick={props.onClick}>
       {props.value === "X" ? "🔴" : props.value === "O" ? "🔵" : ""}
     </button>
   );
@@ -16,6 +16,8 @@ function Board() {
   );
   const [xIsNext, setXIsNext] = useState(true);
   const [winner, setWinner] = useState("");
+
+  const [line, setLine] = useState(Array(7).fill(null));
 
   function handleClick(row: number, col: number) {
     let targetRow = squares.length - 1;
@@ -39,10 +41,15 @@ function Board() {
 
   function checkStatus() {
     if (winner != "") {
+      // color winning line gold
+      line.forEach((square) => {
+        if (square) square.style.backgroundColor = "gold";
+      });
+
       if (winner === "X") {
-        return "Red wins!";
+        return "Red wins!!";
       } else if (winner === "O") {
-        return "Blue wins!";
+        return "Blue wins!!";
       } else {
         return "It's a draw!";
       }
@@ -58,36 +65,37 @@ function Board() {
     // horizontal left
     let count = 1;
     let x = 1;
+    let line: HTMLElement[] = Array(7).fill(null);
+    line[0] = document.getElementById(row + "-" + col)!;
     while (col - x >= 0 && squares[row][col - x] === player) {
+      line[count] = document.getElementById(row + "-" + (col - x))!;
       count++;
       x++;
     }
     // horizontal right
     x = 1;
     while (col + x < squares[0].length && squares[row][col + x] == player) {
+      line[count] = document.getElementById(row + "-" + (col + x))!;
       count++;
       x++;
     }
 
     if (count >= 4) {
+      setLine(line);
       return player;
     }
 
-    // vertical up
+    // vertical down
     count = 1;
     let y = 1;
-    while (row - y >= 0 && squares[row - y][col] === player) {
-      count++;
-      y++;
-    }
-    // vertical down
-    y = 1;
     while (row + y < squares.length && squares[row + y][col] === player) {
+      line[count] = document.getElementById(row + y + "-" + col)!;
       count++;
       y++;
     }
 
     if (count >= 4) {
+      setLine(line);
       return player;
     }
 
@@ -100,23 +108,27 @@ function Board() {
       col - x >= 0 &&
       squares[row - y][col - x] === player
     ) {
+      line[count] = document.getElementById(row - y + "-" + (col - x))!;
       count++;
       x++;
       y++;
     }
     // descending diagonal right
+    x = 1;
     y = 1;
     while (
       row + y < squares.length &&
       col + x < squares[0].length &&
       squares[row + y][col + x] === player
     ) {
+      line[count] = document.getElementById(row + y + "-" + (col + x))!;
       count++;
       x++;
       y++;
     }
 
     if (count >= 4) {
+      setLine(line);
       return player;
     }
 
@@ -129,6 +141,7 @@ function Board() {
       col - x >= 0 &&
       squares[row + y][col - x] === player
     ) {
+      line[count] = document.getElementById(row + y + "-" + (col - x))!;
       count++;
       x++;
       y++;
@@ -140,12 +153,14 @@ function Board() {
       col + x < squares[0].length &&
       squares[row - y][col + x] === player
     ) {
+      line[count] = document.getElementById(row - y + "-" + (col + x))!;
       count++;
       x++;
       y++;
     }
 
     if (count >= 4) {
+      setLine(line);
       return player;
     }
 
@@ -162,65 +177,38 @@ function Board() {
     );
     setXIsNext(true);
     setWinner("");
+
+    line.forEach((square) => {
+      if (square) square.style.backgroundColor = "white";
+    });
+
+    setLine(Array(7).fill(null));
+  }
+
+  function generateRow(row: number) {
+    return (
+      <>
+        {[0, 1, 2, 3, 4, 5, 6].map((col) => (
+          <Square
+            key={row + "-" + col}
+            id={row + "-" + col}
+            value={squares[row][col]}
+            onClick={() => handleClick(row, col)}
+          />
+        ))}
+      </>
+    );
   }
 
   return (
     <div className="game">
       <h1 className="game-title">Connect 4</h1>
-      <div className="board-row">
-        <Square value={squares[0][0]} onClick={() => handleClick(0, 0)} />
-        <Square value={squares[0][1]} onClick={() => handleClick(0, 1)} />
-        <Square value={squares[0][2]} onClick={() => handleClick(0, 2)} />
-        <Square value={squares[0][3]} onClick={() => handleClick(0, 3)} />
-        <Square value={squares[0][4]} onClick={() => handleClick(0, 4)} />
-        <Square value={squares[0][5]} onClick={() => handleClick(0, 5)} />
-        <Square value={squares[0][6]} onClick={() => handleClick(0, 6)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[1][0]} onClick={() => handleClick(1, 0)} />
-        <Square value={squares[1][1]} onClick={() => handleClick(1, 1)} />
-        <Square value={squares[1][2]} onClick={() => handleClick(1, 2)} />
-        <Square value={squares[1][3]} onClick={() => handleClick(1, 3)} />
-        <Square value={squares[1][4]} onClick={() => handleClick(1, 4)} />
-        <Square value={squares[1][5]} onClick={() => handleClick(1, 5)} />
-        <Square value={squares[1][6]} onClick={() => handleClick(1, 6)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[2][0]} onClick={() => handleClick(2, 0)} />
-        <Square value={squares[2][1]} onClick={() => handleClick(2, 1)} />
-        <Square value={squares[2][2]} onClick={() => handleClick(2, 2)} />
-        <Square value={squares[2][3]} onClick={() => handleClick(2, 3)} />
-        <Square value={squares[2][4]} onClick={() => handleClick(2, 4)} />
-        <Square value={squares[2][5]} onClick={() => handleClick(2, 5)} />
-        <Square value={squares[2][6]} onClick={() => handleClick(2, 6)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3][0]} onClick={() => handleClick(3, 0)} />
-        <Square value={squares[3][1]} onClick={() => handleClick(3, 1)} />
-        <Square value={squares[3][2]} onClick={() => handleClick(3, 2)} />
-        <Square value={squares[3][3]} onClick={() => handleClick(3, 3)} />
-        <Square value={squares[3][4]} onClick={() => handleClick(3, 4)} />
-        <Square value={squares[3][5]} onClick={() => handleClick(3, 5)} />
-        <Square value={squares[3][6]} onClick={() => handleClick(3, 6)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[4][0]} onClick={() => handleClick(4, 0)} />
-        <Square value={squares[4][1]} onClick={() => handleClick(4, 1)} />
-        <Square value={squares[4][2]} onClick={() => handleClick(4, 2)} />
-        <Square value={squares[4][3]} onClick={() => handleClick(4, 3)} />
-        <Square value={squares[4][4]} onClick={() => handleClick(4, 4)} />
-        <Square value={squares[4][5]} onClick={() => handleClick(4, 5)} />
-        <Square value={squares[4][6]} onClick={() => handleClick(4, 6)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[5][0]} onClick={() => handleClick(5, 0)} />
-        <Square value={squares[5][1]} onClick={() => handleClick(5, 1)} />
-        <Square value={squares[5][2]} onClick={() => handleClick(5, 2)} />
-        <Square value={squares[5][3]} onClick={() => handleClick(5, 3)} />
-        <Square value={squares[5][4]} onClick={() => handleClick(5, 4)} />
-        <Square value={squares[5][5]} onClick={() => handleClick(5, 5)} />
-        <Square value={squares[5][6]} onClick={() => handleClick(5, 6)} />
-      </div>
+      <div className="board-row">{generateRow(0)}</div>
+      <div className="board-row">{generateRow(1)}</div>
+      <div className="board-row">{generateRow(2)}</div>
+      <div className="board-row">{generateRow(3)}</div>
+      <div className="board-row">{generateRow(4)}</div>
+      <div className="board-row">{generateRow(5)}</div>
       <h3 className="status">{checkStatus()}</h3>
       <Button onClick={resetGame}>New Game</Button>
     </div>

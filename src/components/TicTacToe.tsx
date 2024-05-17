@@ -69,7 +69,7 @@ function Board(props: any) {
     } else if (winner == "XO") {
       return "It's a draw!";
     } else {
-      return xIsNext ? "Next player: X" : "Next player: O";
+      return " ";
     }
   }
 

@@ -25,7 +25,7 @@
 }
 
 .squareCheckers:focus {
-  border: solid;
+  border: 3px solid black;
 }
 
 .kbd-navigation .square:focus {

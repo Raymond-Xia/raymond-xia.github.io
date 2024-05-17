@@ -92,7 +92,6 @@ function Wordle() {
 
   function handleGuess(e: any) {
     e.preventDefault();
-    console.log(attempt);
 
     const nextGuesses = guesses.map((g, i) => {
       if (i === attempt) {
