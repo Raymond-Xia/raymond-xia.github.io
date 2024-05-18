@@ -1,16 +1,13 @@
 .letter {
   background: #fff;
   border: 1px solid #999;
-  float: left;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
+  height: 45px;
+  width: 45px;
   margin-right: 5px;
   margin-bottom: 5px;
-  padding: 0;
   text-align: center;
-  width: 34px;
 }
 
 .letter:focus {
@@ -29,4 +26,5 @@
   margin: 2px;
   border: none;
   color: black;
+  min-width: 28px;
 }
