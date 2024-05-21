@@ -43,7 +43,7 @@ function App() {
               <Nav.Link href="/#experience">Experience</Nav.Link>
               <Nav.Link href="/#projects">Projects</Nav.Link>
               <Nav.Link href="/#games">Games</Nav.Link>
-              <Nav.Link href="/#contact">Contact</Nav.Link>
+              {/* <Nav.Link href="/#contact">Contact</Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -52,9 +52,6 @@ function App() {
         <div className="main-section" id="home">
           <Home />
         </div>
-        {/* <div className="main-section" id="contact">
-          <Contact />
-        </div> */}
         <div className="main-section" id="experience">
           <Experience />
         </div>
@@ -64,6 +61,10 @@ function App() {
         <div className="main-section" id="games">
           <Games />
         </div>
+        {/* <div className="main-section" id="contact">
+          <Contact />
+        </div> */}
+        <hr />
       </Container>
       <Particles
         id="tsparticles"

@@ -2423,7 +2423,7 @@ function Wordle() {
     if (winner != "") return;
 
     let text = letters[attempt].join("");
-    if (text.length != WORD_LENGTH || !WORDS.includes(text)) return;
+    if (text.length != WORD_LENGTH) return;
 
     let guess = letters[attempt].slice();
     let colorsCopy = colors.slice();

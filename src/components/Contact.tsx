@@ -1,37 +1,38 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Github from "../assets/github-logo.png";
-import LinkedIn from "../assets/linkedin-logo.png";
-
 function Contact() {
   return (
-    <div className="section">
-      <h1 className="display-5">Skills</h1>
+    <div className="section" style={{ marginBottom: "20px" }}>
+      <h1 className="display-3">Contact me</h1>
       <hr />
-      <p>Java</p>
-      <div className="skillbar">
-        <div className="skills" style={{ width: "90%" }}></div>
-      </div>
+      <form id="contact-form" method="POST">
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1" style={{ fontSize: "1.2rem" }}>
+            Email Address
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            aria-describedby="emailHelp"
+            style={{ backgroundColor: "#111111", color: "white" }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="message" style={{ fontSize: "1.2rem" }}>
+            Message
+          </label>
+          <textarea
+            className="form-control"
+            style={{
+              minHeight: "200px",
+              backgroundColor: "#111111",
+              color: "white",
+            }}
+          ></textarea>
+        </div>
 
-      <p>Python</p>
-      <div className="skillbar">
-        <div className="skills" style={{ width: "90%" }}></div>
-      </div>
-
-      <p>JavaScript</p>
-      <div className="skillbar">
-        <div className="skills" style={{ width: "85%" }}></div>
-      </div>
-
-      <p>TypeScript</p>
-      <div className="skillbar">
-        <div className="skills" style={{ width: "85%" }}></div>
-      </div>
-
-      <p>HTML/CSS</p>
-      <div className="skillbar">
-        <div className="skills" style={{ width: "85%" }}></div>
-      </div>
+        <button className="button-bw" type="submit">
+          Submit
+        </button>
+      </form>
     </div>
   );
 }

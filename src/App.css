@@ -29,13 +29,26 @@ body {
 }
 
 .card-image {
-  background-color: white;
+  background-color: #111111;
 }
 
 .card {
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.game-card {
-  cursor: pointer;
+.button-bw {
+  border-radius: 30px;
+  background-color: white;
+  color: #111111;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.form-group {
+  margin-bottom: 10px;
 }

@@ -5,11 +5,12 @@ import blackberry from "../assets/blackberry.jpg";
 import agfa from "../assets/agfa.png";
 import symbility from "../assets/symbility.png";
 import eventmobi from "../assets/eventmobi.png";
+import resume from "../assets/RaymondXiaResume2024.pdf";
 
 function Experience() {
   return (
     <div className="section">
-      <h1 className="display-5">Experience</h1>
+      <h1 className="display-3">Experience</h1>
       <hr />
       <div className="grid-container">
         <Row className="company-row">
@@ -194,6 +195,11 @@ function Experience() {
             </Row>
           </Col>
         </Row>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <a className="button-bw" href={resume} target="_blank">
+          View Resume
+        </a>
       </div>
     </div>
   );

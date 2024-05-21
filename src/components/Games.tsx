@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, Modal, Container } from "react-bootstrap";
+import { Card, Col, Row, Modal, Container } from "react-bootstrap";
 import wordle from "../assets/wordle.png";
 import tictactoe from "../assets/tictactoe.png";
 import connect4 from "../assets/connect4.png";
@@ -33,13 +33,13 @@ function Games() {
   }
   return (
     <div className="section">
-      <h1 className="display-5">Games</h1>
+      <h1 className="display-3">Games</h1>
       <hr />
       <Container>
         <Row xs="2" md="4">
           <Col>
             <Card
-              className="game-card"
+              className="card"
               bg="dark"
               data-bs-theme="dark"
               onClick={() => handleGame(0)}
@@ -52,7 +52,7 @@ function Games() {
           </Col>
           <Col>
             <Card
-              className="game-card"
+              className="card"
               bg="dark"
               data-bs-theme="dark"
               onClick={() => handleGame(1)}
@@ -65,7 +65,7 @@ function Games() {
           </Col>
           <Col>
             <Card
-              className="game-card"
+              className="card"
               bg="dark"
               data-bs-theme="dark"
               onClick={() => handleGame(2)}
@@ -78,7 +78,7 @@ function Games() {
           </Col>
           <Col>
             <Card
-              className="game-card"
+              className="card"
               bg="dark"
               text="light"
               onClick={() => handleGame(3)}

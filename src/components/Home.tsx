@@ -11,7 +11,7 @@ import { Col, Row } from "react-bootstrap";
 function Home() {
   return (
     <div>
-      <div className="jumbotron" style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center" }}>
         <Row>
           <Col>
             <h1
@@ -63,7 +63,7 @@ function Home() {
                 marginBottom: "50px",
               }}
             >
-              You can also contact/find me here
+              You can contact/find me here
             </p>
             <Row className="justify-content-md-center">
               <Col xs lg="3">
