@@ -38,11 +38,22 @@ function App() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="justify-content-end" style={{ width: "100%" }}>
-              <Nav.Link href="/#">Home</Nav.Link>
-              <Nav.Link href="/#experience">Experience</Nav.Link>
-              <Nav.Link href="/#projects">Projects</Nav.Link>
-              <Nav.Link href="/#games">Games</Nav.Link>
+            <Nav
+              className="justify-content-end"
+              style={{ width: "100%", fontSize: "1.2rem" }}
+            >
+              <Nav.Link className="navlink" href="/#">
+                Home
+              </Nav.Link>
+              <Nav.Link className="navlink" href="/#experience">
+                Experience
+              </Nav.Link>
+              <Nav.Link className="navlink" href="/#projects">
+                Projects
+              </Nav.Link>
+              <Nav.Link className="navlink" href="/#games">
+                Games
+              </Nav.Link>
               {/* <Nav.Link href="/#contact">Contact</Nav.Link> */}
             </Nav>
           </Navbar.Collapse>

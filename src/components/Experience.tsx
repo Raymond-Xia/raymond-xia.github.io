@@ -1,11 +1,12 @@
 import { Col, Row } from "react-bootstrap";
+import alertlabs from "../assets/alertlabs.jpg";
 import ukg from "../assets/ukg.png";
 import trustwave from "../assets/trustwave.png";
 import blackberry from "../assets/blackberry.jpg";
 import agfa from "../assets/agfa.png";
 import symbility from "../assets/symbility.png";
 import eventmobi from "../assets/eventmobi.png";
-import resume from "../assets/RaymondXiaResume2024.pdf";
+import resume from "../assets/RaymondXiaResume2026.pdf";
 
 function Experience() {
   return (
@@ -13,6 +14,36 @@ function Experience() {
       <h1 className="display-3">Experience</h1>
       <hr />
       <div className="grid-container">
+        <Row className="company-row">
+          <Col md="auto">
+            <img className="company-icon" src={alertlabs} />
+          </Col>
+          <Col>
+            <h2 className="experience-title">Backend Developer</h2>
+            <Row>
+              <Col>
+                <h4>Alert Labs</h4>
+              </Col>
+              <Col>
+                <p style={{ textAlign: "right" }}>Jul 2024 - Present</p>
+              </Col>
+            </Row>
+            <p>
+              I architected and implemented TypeScript backend services for a
+              water and temperature sensor management platform. Designed
+              automated registration workflows, scalable storage pipelines,
+              reporting tools, and Flutter UI components for configuration and
+              reporting.
+            </p>
+            <Row xs="3" md="6" style={{ color: "grey" }}>
+              <Col>TypeScript</Col>
+              <Col>JavaScript</Col>
+              <Col>Flutter</Col>
+              <Col>MongoDB</Col>
+              <Col>Mocha</Col>
+            </Row>
+          </Col>
+        </Row>
         <Row className="company-row">
           <Col md="auto">
             <img className="company-icon" src={ukg} />

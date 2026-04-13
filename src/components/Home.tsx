@@ -1,6 +1,6 @@
 import Image from "react-bootstrap/Image";
 import Raymond from "../assets/raymond_xia.png";
-import resumeFile from "../assets/RaymondXiaResume2024.pdf";
+import resumeFile from "../assets/RaymondXiaResume2026.pdf";
 import Github from "../assets/github.jpg";
 import LinkedIn from "../assets/linkedin.png";
 import arrow from "../assets/arrow.png";
@@ -63,7 +63,7 @@ function Home() {
                 marginBottom: "50px",
               }}
             >
-              You can contact/find me here
+              You can also contact/find me here
             </p>
             <Row className="justify-content-md-center">
               <Col xs lg="3">
